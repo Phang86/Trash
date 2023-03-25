@@ -19,4 +19,9 @@ public class Constant {
      */
     public static final int SUCCESS_CODE = 200;
 
+    /**
+     * 讯飞APPID
+     */
+    public static final String XF_APPID = "=c3faf12e";
+
 }
