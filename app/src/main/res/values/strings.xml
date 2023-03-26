@@ -14,8 +14,12 @@
     <string name="confirm_exit">再按一次退出程序</string>
     <string name="skip">跳过</string>
     <string name="no_data">暂无数据</string>
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
+    <string name="in_the_switch">语言设置</string>
+    <string name="cn">中文（简体）</string>
+    <string name="en">英语</string>
+    <string name="tw">中文（繁体）</string>
+    <string name="language_select">语言选择</string>
+    <string name="is_language">已是系统当前语言，无需重复选择！</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->

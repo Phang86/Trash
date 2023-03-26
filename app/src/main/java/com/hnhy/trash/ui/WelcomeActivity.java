@@ -1,7 +1,5 @@
 package com.hnhy.trash.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -9,10 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +16,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hnhy.trash.R;
+import com.hnhy.trash.utils.Constant;
+import com.hnhy.trash.utils.LanguageUtil;
+import com.hnhy.trash.utils.SpUserUtils;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
 
@@ -40,6 +39,7 @@ public class WelcomeActivity extends BaseActivity {
         relativeLayout = findViewById(R.id.welcome_bg);
         tv = findViewById(R.id.tv);
         cv = findViewById(R.id.cardview);
+        checkLanguage();
         try {
             Glide.with(this).load(IMG_URL).into(new SimpleTarget<Drawable>() {
                 @Override
@@ -61,6 +61,12 @@ public class WelcomeActivity extends BaseActivity {
         initView();
     }
 
+    //检查语言
+    private void checkLanguage() {
+        String language = SpUserUtils.getString(this, Constant.LANGUAGE_KEY);
+        LanguageUtil.changeAppLanguage(this, language, WelcomeActivity.class,false);
+    }
+
 
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
@@ -68,7 +74,7 @@ public class WelcomeActivity extends BaseActivity {
         public void run() {
             cv.setVisibility(View.VISIBLE);
             time--;
-            tv.setText(getString(R.string.skip)+"\t"+time);
+            tv.setText(getString(R.string.skip)+" "+time);
             handler.postDelayed(this, 1000);
             if (time == 0){
                 goToActivity();

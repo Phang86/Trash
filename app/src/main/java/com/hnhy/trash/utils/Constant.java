@@ -24,4 +24,14 @@ public class Constant {
      */
     public static final String XF_APPID = "=c3faf12e";
 
+    /**
+     * 语言
+     */
+    public static final String LANGUAGE = "language_sp_util";
+
+    /**
+     * 语言
+     */
+    public static final String LANGUAGE_KEY = "language";
+
 }

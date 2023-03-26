@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Trash</string>
+    <string name="garbage_sorting">Garbage sorting</string>
+    <string name="enter_items">Please enter the item</string>
+    <string name="recyclables">recyclables</string>
+    <string name="hazardous_waste">hazardous waste</string>
+    <string name="kitchen_garbage">kitchen garbage</string>
+    <string name="dry_refuse">dry refuse</string>
+    <string name="enter_item_name">Please enter the name item</string>
+    <string name="knowledge_blind_spot">触及到了知识盲区</string>
+    <string name="manual_input">Manually enter</string>
+    <string name="word_input">Text input</string>
+    <string name="speech_input">Voice input</string>
+    <string name="confirm_exit">Again according to exit the program</string>
+    <string name="skip">skip</string>
+    <string name="no_data">No data yet</string>
+    <string name="in_the_switch">Language Settings</string>
+    <string name="cn">Chinese</string>
+    <string name="en">English</string>
+    <string name="tw">Traditional Chinese</string>
+    <string name="language_select">Language selection</string>
+    <string name="is_language">Has is the current system language, without having to repeat!</string>
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+</resources>

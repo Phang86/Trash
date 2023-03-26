@@ -60,4 +60,24 @@
         app:iconGravity="textStart"
         app:iconSize="@dimen/dp_24" />
 
+    <!--声音输入-->
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_margin="@dimen/dp_16"
+        android:gravity="center"
+        android:insetTop="@dimen/dp_0"
+        android:insetBottom="@dimen/dp_0"
+        android:onClick="changeLanguage"
+        android:text="@string/in_the_switch"
+        android:textSize="@dimen/sp_16"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:cornerRadius="@dimen/dp_12"
+        app:icon="@mipmap/icon_voice_input"
+        app:iconGravity="textStart"
+        app:iconSize="@dimen/dp_24"
+        tools:ignore="OnClick" />
+
 </LinearLayout>

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Trash</string>
+    <string name="garbage_sorting">垃圾分類</string>
+    <string name="enter_items">請輸入物品</string>
+    <string name="recyclables">可回收垃圾</string>
+    <string name="hazardous_waste">有害垃圾</string>
+    <string name="kitchen_garbage">厨餘垃圾</string>
+    <string name="dry_refuse">乾垃圾</string>
+    <string name="enter_item_name">請輸入物品名</string>
+    <string name="knowledge_blind_spot">觸及到了知識盲區</string>
+    <string name="manual_input">手動輸入</string>
+    <string name="word_input">文字輸入</string>
+    <string name="speech_input">語音輸入</string>
+    <string name="confirm_exit">再按一次退出</string>
+    <string name="skip">跳過</string>
+    <string name="no_data">暫無數據</string>
+    <string name="in_the_switch">語言設置</string>
+    <string name="cn">中文（簡體）</string>
+    <string name="en">英語</string>
+    <string name="tw">中文（繁體）</string>
+    <string name="language_select">語言設置</string>
+    <string name="is_language">已是系統當前語言，無需重複選擇！</string>
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+</resources>
