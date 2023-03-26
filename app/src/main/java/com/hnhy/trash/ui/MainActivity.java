@@ -3,12 +3,12 @@ package com.hnhy.trash.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 
 import com.hnhy.trash.R;
 import com.hnhy.trash.utils.Constant;
@@ -16,20 +16,41 @@ import com.hnhy.trash.utils.LanguageUtil;
 import com.hnhy.trash.utils.SpUserUtils;
 import com.llw.mvplibrary.base.BaseActivity;
 
-import java.util.Locale;
 
-import butterknife.internal.Utils;
-
-
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnTouchListener{
 
     private long exitTime = 0;
-    private String lan;
     private int position;
+    private Switch swCn,swTw,swEn;
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        swCn = findViewById(R.id.sw_cn);
+        swTw = findViewById(R.id.sw_tw);
+        swEn = findViewById(R.id.sw_en);
 
+        swCn.setOnTouchListener(this);
+        swTw.setOnTouchListener(this);
+        swEn.setOnTouchListener(this);
+
+        String strLanguage = SpUserUtils.getString(this, Constant.LANGUAGE_KEY);
+
+        if (strLanguage.equals("zh")){
+            swCn.setChecked(true);
+            swTw.setChecked(false);
+            swEn.setChecked(false);
+            position = 0;
+        }else if (strLanguage.equals("zh_rTW")){
+            swCn.setChecked(false);
+            swTw.setChecked(true);
+            swEn.setChecked(false);
+            position = 1;
+        }else if (strLanguage.equals("en")){
+            swCn.setChecked(false);
+            swTw.setChecked(false);
+            swEn.setChecked(true);
+            position = 2;
+        }
     }
 
     @Override
@@ -107,14 +128,17 @@ public class MainActivity extends BaseActivity {
                         case 0:
                             //简体中文
                             showSaveLanguage("zh");
+                            syncSwitch(0);
                             break;
                         case 1:
                             //繁体中文
                             showSaveLanguage("zh_rTW");
+                            syncSwitch(1);
                             break;
                         case 2:
                             //英文
                             showSaveLanguage("en");
+                            syncSwitch(2);
                             break;
                         default:
                             break;
@@ -124,6 +148,22 @@ public class MainActivity extends BaseActivity {
             }
         });
         alert.create().show();
+    }
+
+    private void syncSwitch(int position) {
+        if (position == 0){
+            swCn.setChecked(true);
+            swTw.setChecked(false);
+            swEn.setChecked(false);
+        }else if (position == 1){
+            swCn.setChecked(false);
+            swTw.setChecked(true);
+            swEn.setChecked(false);
+        }else if (position == 2){
+            swCn.setChecked(false);
+            swTw.setChecked(false);
+            swEn.setChecked(true);
+        }
     }
 
     /**
@@ -137,4 +177,52 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    public void switchOnclick(View view) {
+        switch (view.getId()) {
+            case R.id.sw_cn:
+                if (position != 0) {
+                    swCn.setChecked(true);
+                    swTw.setChecked(false);
+                    swEn.setChecked(false);
+                    showSaveLanguage("zh");
+                    position = 0;
+                }else{
+                    showMsg(getString(R.string.is_language));
+                    swCn.setChecked(true);
+                }
+                break;
+            case R.id.sw_tw:
+                if (position != 1) {
+                    swCn.setChecked(false);
+                    swTw.setChecked(true);
+                    swEn.setChecked(false);
+                    showSaveLanguage("zh_rTW");
+                    position = 1;
+                }else{
+                    showMsg(getString(R.string.is_language));
+                    swTw.setChecked(true);
+                }
+                break;
+            case R.id.sw_en:
+                if (position != 2) {
+                    swCn.setChecked(false);
+                    swTw.setChecked(false);
+                    swEn.setChecked(true);
+                    showSaveLanguage("en");
+                    position = 2;
+                }else{
+                    showMsg(getString(R.string.is_language));
+                    swEn.setChecked(true);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    //只支持点击事件
+    public boolean onTouch(View v, MotionEvent event) {
+        return event.getActionMasked() == MotionEvent.ACTION_MOVE;
+    }
 }
