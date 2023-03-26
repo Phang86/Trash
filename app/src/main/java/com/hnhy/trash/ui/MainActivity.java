@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.hnhy.trash.R;
@@ -22,12 +24,14 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener{
     private long exitTime = 0;
     private int position;
     private Switch swCn,swTw,swEn;
+    private LinearLayout switchLayout;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         swCn = findViewById(R.id.sw_cn);
         swTw = findViewById(R.id.sw_tw);
         swEn = findViewById(R.id.sw_en);
+        switchLayout = findViewById(R.id.switch_layout);
 
         swCn.setOnTouchListener(this);
         swTw.setOnTouchListener(this);
@@ -103,7 +107,22 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener{
 
     //中英切换
     public void changeLanguage(View view) {
-        alertChangeLanguageDialog();
+        switchLayout.setVisibility(View.GONE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String items[] = {getString(R.string.bounced_a),getString(R.string.switch_on)};
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    alertChangeLanguageDialog();
+                }else{
+                    switchLayout.setVisibility(View.VISIBLE);
+                }
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+
     }
 
     private void alertChangeLanguageDialog(){

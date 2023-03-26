@@ -20,7 +20,8 @@
     <string name="tw">中文（繁體）</string>
     <string name="language_select">語言設置</string>
     <string name="is_language">已是系統當前語言，無需重複選擇！</string>
-    <!--    <string name=""></string>-->
+    <string name="bounced_a">彈框展開</string>
+    <string name="switch_on">開關展開</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

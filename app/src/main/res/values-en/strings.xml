@@ -20,8 +20,8 @@
     <string name="tw">Traditional Chinese</string>
     <string name="language_select">Language selection</string>
     <string name="is_language">Has is the current system language, without having to repeat!</string>
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
+    <string name="bounced_a">Pop-up expansion</string>
+    <string name="switch_on">Switch deployment</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

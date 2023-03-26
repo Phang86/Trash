@@ -75,17 +75,19 @@
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
         app:backgroundTint="@color/colorPrimaryDark"
         app:cornerRadius="@dimen/dp_12"
-        app:icon="@mipmap/icon_voice_input"
+        app:icon="@mipmap/icon_language_set"
         app:iconGravity="textStart"
         app:iconSize="@dimen/dp_24"
         tools:ignore="OnClick" />
 
     <LinearLayout
+        android:id="@+id/switch_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15">
+        android:layout_marginRight="@dimen/dp_15"
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
