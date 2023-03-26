@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
     private void alertChangeLanguageDialog(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         String items[] = {getString(R.string.cn),getString(R.string.tw),getString(R.string.en)};
-        String language = SpUserUtils.getString(this, "language");
+        String language = SpUserUtils.getString(this, Constant.LANGUAGE_KEY);
         if (language.equals("zh")){
             position = 0;
         }else if (language.equals("zh_rTW")){
