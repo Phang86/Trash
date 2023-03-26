@@ -77,7 +77,7 @@
         app:cornerRadius="@dimen/dp_12"
         app:icon="@mipmap/icon_language_set"
         app:iconGravity="textStart"
-        app:iconSize="@dimen/dp_24"
+        app:iconSize="@dimen/dp_26"
         tools:ignore="OnClick" />
 
     <LinearLayout
@@ -108,6 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:onClick="switchOnclick"
+                android:thumb="@drawable/selector_thumb"
+                android:track="@drawable/selector_track"
                 />
 
         </RelativeLayout>
@@ -131,6 +133,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:onClick="switchOnclick"
+                android:thumb="@drawable/selector_thumb"
+                android:track="@drawable/selector_track"
                 />
 
         </RelativeLayout>
@@ -154,7 +158,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:onClick="switchOnclick"
-
+                android:thumb="@drawable/selector_thumb"
+                android:track="@drawable/selector_track"
                 />
 
         </RelativeLayout>

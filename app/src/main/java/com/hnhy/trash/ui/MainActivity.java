@@ -122,7 +122,6 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener{
             }
         });
         builder.create().show();
-
     }
 
     private void alertChangeLanguageDialog(){
