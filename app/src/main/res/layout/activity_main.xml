@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/white"
     tools:context=".ui.MainActivity">
 
     <!--应用栏布局-->
@@ -85,99 +86,278 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_10">
+                android:layout_margin="@dimen/dp_10"
+                app:contentPadding="8dp"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
+                app:cardCornerRadius="@dimen/dp_10"
+                app:cardMaxElevation="@dimen/dp_0"
+                app:cardElevation="@dimen/dp_0"
+                >
 
-                <!--文字输入-->
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:insetTop="@dimen/dp_0"
-                    android:insetBottom="@dimen/dp_0"
-                    android:onClick="jumpTextInput"
-                    android:text="@string/word_input"
-                    android:textSize="@dimen/sp_14"
-                    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-                    app:backgroundTint="@color/colorPrimaryDark"
-                    app:cornerRadius="@dimen/dp_12"
-                    app:icon="@mipmap/icon_text_input"
-                    app:iconGravity="textStart"
-                    app:iconSize="@dimen/dp_20"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_marginRight="@dimen/dp_10"
-                    />
+                    android:orientation="horizontal">
 
-                <!--声音输入-->
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:insetTop="@dimen/dp_0"
-                    android:insetBottom="@dimen/dp_0"
-                    android:onClick="jumpVoiceInput"
-                    android:text="@string/speech_input"
-                    android:textSize="@dimen/sp_14"
-                    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-                    app:backgroundTint="@color/colorPrimaryDark"
-                    app:cornerRadius="@dimen/dp_12"
-                    app:icon="@mipmap/icon_voice_input"
-                    app:iconGravity="textStart"
-                    app:iconSize="@dimen/dp_20"
-                    android:layout_marginRight="10dp"/>
+                    <!--文字输入-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:insetTop="@dimen/dp_0"-->
+<!--                        android:insetBottom="@dimen/dp_0"-->
+<!--                        android:onClick="jumpTextInput"-->
+<!--                        android:text="@string/word_input"-->
+<!--                        android:textSize="@dimen/sp_14"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"-->
+<!--                        app:backgroundTint="@color/colorPrimaryDark"-->
+<!--                        app:cornerRadius="@dimen/dp_12"-->
+<!--                        app:icon="@mipmap/icon_text_input"-->
+<!--                        app:iconGravity="textStart"-->
+<!--                        app:iconSize="@dimen/dp_20"-->
+<!--                        android:layout_marginRight="@dimen/dp_5"-->
+<!--                        />-->
 
-                <!--声音输入-->
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:insetTop="@dimen/dp_0"
-                    android:insetBottom="@dimen/dp_0"
-                    android:onClick="changeLanguage"
-                    android:text="@string/in_the_switch"
-                    android:textSize="@dimen/sp_14"
-                    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-                    app:backgroundTint="@color/colorPrimaryDark"
-                    app:cornerRadius="@dimen/dp_12"
-                    app:icon="@mipmap/icon_language_set"
-                    app:iconGravity="textStart"
-                    app:iconSize="@dimen/dp_20"
-                    tools:ignore="OnClick"
-                    android:layout_marginRight="@dimen/dp_10"
-                    />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="@dimen/dp_0"
+                        app:cardMaxElevation="@dimen/dp_0"
+                        android:layout_marginRight="8dp"
+                        app:cardCornerRadius="@dimen/dp_8"
+                        android:onClick="jumpTextInput"
+                        app:contentPaddingTop="@dimen/dp_10"
+                        app:contentPaddingBottom="@dimen/dp_10"
+                        android:foreground="@drawable/view_foreground"
+                        app:cardBackgroundColor="@android:color/transparent">
 
-                <!--图像输入-->
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:insetTop="@dimen/dp_0"
-                    android:insetBottom="@dimen/dp_0"
-                    android:onClick="jumpImageInput"
-                    android:text="@string/img_input"
-                    android:textSize="@dimen/sp_14"
-                    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-                    app:backgroundTint="@color/colorPrimaryDark"
-                    app:cornerRadius="@dimen/dp_12"
-                    app:icon="@mipmap/icon_image_input"
-                    app:iconGravity="textStart"
-                    app:iconSize="@dimen/dp_20"
-                    android:layout_marginRight="@dimen/dp_10"
-                    />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            >
 
-            </LinearLayout>
+                            <ImageView
+                                android:layout_width="@dimen/dp_22"
+                                android:layout_height="@dimen/dp_22"
+                                android:src="@mipmap/icon_text_input"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/word_input"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dp_12"
+                                android:textSize="@dimen/sp_15"
+                                />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                    <!--声音输入-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:insetTop="@dimen/dp_0"-->
+<!--                        android:insetBottom="@dimen/dp_0"-->
+<!--                        android:onClick="jumpVoiceInput"-->
+<!--                        android:text="@string/speech_input"-->
+<!--                        android:textSize="@dimen/sp_14"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"-->
+<!--                        app:backgroundTint="@color/colorPrimaryDark"-->
+<!--                        app:cornerRadius="@dimen/dp_12"-->
+<!--                        app:icon="@mipmap/icon_voice_input"-->
+<!--                        app:iconGravity="textStart"-->
+<!--                        app:iconSize="@dimen/dp_20"-->
+<!--                        android:layout_marginRight="10dp"/>-->
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="@dimen/dp_0"
+                        app:cardMaxElevation="@dimen/dp_0"
+                        android:layout_marginRight="8dp"
+                        app:cardCornerRadius="@dimen/dp_8"
+                        android:onClick="jumpVoiceInput"
+                        app:contentPaddingTop="@dimen/dp_10"
+                        app:contentPaddingBottom="@dimen/dp_10"
+                        android:foreground="@drawable/view_foreground"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            >
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_22"
+                                android:layout_height="@dimen/dp_22"
+                                android:src="@mipmap/icon_voice_input"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/speech_input"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dp_12"
+                                android:textSize="@dimen/sp_15"
+                                />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                    <!--声音输入-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:insetTop="@dimen/dp_0"-->
+<!--                        android:insetBottom="@dimen/dp_0"-->
+<!--                        android:onClick="changeLanguage"-->
+<!--                        android:text="@string/in_the_switch"-->
+<!--                        android:textSize="@dimen/sp_14"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"-->
+<!--                        app:backgroundTint="@color/colorPrimaryDark"-->
+<!--                        app:cornerRadius="@dimen/dp_12"-->
+<!--                        app:icon="@mipmap/icon_language_set"-->
+<!--                        app:iconGravity="textStart"-->
+<!--                        app:iconSize="@dimen/dp_20"-->
+<!--                        tools:ignore="OnClick"-->
+<!--                        android:layout_marginRight="@dimen/dp_10"-->
+<!--                        />-->
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="@dimen/dp_0"
+                        app:cardMaxElevation="@dimen/dp_0"
+                        android:layout_marginRight="8dp"
+                        app:cardCornerRadius="@dimen/dp_8"
+                        android:onClick="changeLanguage"
+                        app:contentPaddingTop="@dimen/dp_10"
+                        app:contentPaddingBottom="@dimen/dp_10"
+                        android:foreground="@drawable/view_foreground"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            >
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_22"
+                                android:layout_height="@dimen/dp_22"
+                                android:src="@mipmap/icon_language_set"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/in_the_switch"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dp_12"
+                                android:textSize="@dimen/sp_15"
+                                />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                    <!--图像输入-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:insetTop="@dimen/dp_0"-->
+<!--                        android:insetBottom="@dimen/dp_0"-->
+<!--                        android:onClick="jumpImageInput"-->
+<!--                        android:text="@string/img_input"-->
+<!--                        android:textSize="@dimen/sp_14"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"-->
+<!--                        app:backgroundTint="@color/colorPrimaryDark"-->
+<!--                        app:cornerRadius="@dimen/dp_12"-->
+<!--                        app:icon="@mipmap/icon_image_input"-->
+<!--                        app:iconGravity="textStart"-->
+<!--                        app:iconSize="@dimen/dp_20"-->
+<!--                        android:layout_marginRight="@dimen/dp_10"-->
+<!--                        />-->
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="@dimen/dp_0"
+                        app:cardMaxElevation="@dimen/dp_0"
+                        app:cardCornerRadius="@dimen/dp_8"
+                        android:onClick="jumpImageInput"
+                        app:contentPaddingTop="@dimen/dp_10"
+                        app:contentPaddingBottom="@dimen/dp_10"
+                        android:foreground="@drawable/view_foreground"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            >
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_22"
+                                android:layout_height="@dimen/dp_22"
+                                android:src="@mipmap/icon_image_input"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/img_input"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dp_12"
+                                android:textSize="@dimen/sp_15"
+                                />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <!--垃圾分类新闻列表-->
             <androidx.recyclerview.widget.RecyclerView
