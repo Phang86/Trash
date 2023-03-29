@@ -11,7 +11,7 @@
     <string name="manual_input">手動輸入</string>
     <string name="word_input">文字輸入</string>
     <string name="speech_input">語音輸入</string>
-    <string name="confirm_exit">再按一次退出</string>
+    <string name="confirm_exit">再按一次退出程序</string>
     <string name="skip">跳過</string>
     <string name="no_data">暫無數據</string>
     <string name="in_the_switch">語言設置</string>
@@ -22,6 +22,8 @@
     <string name="is_language">已是系統當前語言，無需重複選擇！</string>
     <string name="bounced_a">彈框展開</string>
     <string name="switch_on">開關展開</string>
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
+    <string name="img_input">圖像輸入</string>
+    <string name="not_camera">未獲取到相機權限</string>
+    <string name="token_isEmpty">token爲空</string>
+    <string name="news_info">新聞詳情</string>
 </resources>

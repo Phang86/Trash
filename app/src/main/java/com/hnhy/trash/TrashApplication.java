@@ -12,6 +12,9 @@ import com.llw.mvplibrary.network.NetworkApi;
 
 import java.util.Locale;
 
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
+
 /**
  * 自定义Application
  */
@@ -23,6 +26,13 @@ public class TrashApplication extends BaseApplication {
         NetworkApi.init(new NetworkRequiredInfo(this));
         //初始化讯飞语音
         SpeechUtility.createUtility(this, SpeechConstant.APPID + Constant.XF_APPID);
+
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();//这里处理所有的Rxjava异常
+            }
+        });
 
     }
 }

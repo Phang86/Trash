@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -28,6 +29,7 @@ public class WelcomeActivity extends BaseActivity {
     private int time = 5;
     private CardView cv;
     private TextView tv;
+//    private final String IMG_URL = "http://imgsrc.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg";
     private final String IMG_URL = "https://api.dujin.org/bing/m.php";
 
     @Override
@@ -45,6 +47,9 @@ public class WelcomeActivity extends BaseActivity {
                 @Override
                 public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        relativeLayout.setBackground(resource);
+                    }else{
+                        //g.e("TAG", "onResourceReady: "+);
                         relativeLayout.setBackground(resource);
                     }
                 }
@@ -83,7 +88,7 @@ public class WelcomeActivity extends BaseActivity {
     };
 
     private void goToActivity() {
-        //handler.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
         startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
         finish();
     }
@@ -100,7 +105,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK ){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
             handler.removeCallbacksAndMessages(null);
         }
         return super.onKeyDown(keyCode, event);

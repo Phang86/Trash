@@ -34,4 +34,38 @@ public class Constant {
      */
     public static final String LANGUAGE_KEY = "language";
 
+
+    /**
+     * 百度鉴权认证参数前
+     */
+    public static final String GRANT_TYPE = "client_credentials";
+
+    /**
+     * 百度图像识别 APPID
+     */
+    public static final String BD_APPID = "31699513";
+
+    /**
+     * 百度图像识别 API KEY
+     */
+    public static final String API_KEY = "SiQahuZP8dpApyW231aqlkCP";
+
+    /**
+     * 百度图像识别 Secret  KEY
+     */
+    public static final String API_SECRET = "3TXDRIlagf53NpIII9hDq5lEnvrvuvZa";
+
+    /**
+     * 鉴权Token
+     */
+    public static final String TOKEN = "accessToken";
+    /**
+     * 获取Token的时间
+     */
+    public static final String GET_TOKEN_TIME = "getTokenTime";
+    /**
+     * Token有效期
+     */
+    public static final String TOKEN_VALID_PERIOD = "tokenValidPeriod";
+
 }

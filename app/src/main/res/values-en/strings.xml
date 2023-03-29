@@ -22,6 +22,10 @@
     <string name="is_language">Has is the current system language, without having to repeat!</string>
     <string name="bounced_a">Pop-up expansion</string>
     <string name="switch_on">Switch deployment</string>
+    <string name="img_input">Image input</string>
+    <string name="not_camera">The camera permission is not obtained. Procedure</string>
+    <string name="token_isEmpty">token null</string>
+    <string name="news_info">News details</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

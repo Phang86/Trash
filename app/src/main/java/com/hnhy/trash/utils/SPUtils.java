@@ -50,10 +50,22 @@ public class SPUtils {
         return sp.getInt(key, defValue);
     }
 
+    public static void putLong(String key, long value, Context context) {
+        SharedPreferences sp = context.getSharedPreferences(NAME,
+                Context.MODE_PRIVATE);
+        sp.edit().putLong(key, value).commit();
+    }
+
+
+    public static long getLong(String key, long defValue, Context context) {
+        SharedPreferences sp = context.getSharedPreferences(NAME,
+                Context.MODE_PRIVATE);
+        return sp.getLong(key, defValue);
+    }
+
     public static void remove(String key, Context context) {
         SharedPreferences sp = context.getSharedPreferences(NAME,
                 Context.MODE_PRIVATE);
         sp.edit().remove(key).commit();
     }
-
 }

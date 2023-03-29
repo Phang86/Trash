@@ -22,5 +22,13 @@
     <string name="is_language">已是系统当前语言，无需重复选择！</string>
     <string name="bounced_a">弹框展开</string>
     <string name="switch_on">开关展开</string>
+    <string name="img_input">图像输入</string>
+    <string name="not_camera">未获取到相机权限</string>
+    <string name="token_isEmpty">token为空</string>
+    <string name="news_info">新闻详情</string>
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
+    <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>
