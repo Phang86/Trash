@@ -8,6 +8,8 @@ package com.hnhy.trash.utils;
  */
 public class Constant {
 
+    //https://www.mxnzp.com/api/image/girl/list/random?app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09
+
     /**
      * 垃圾分类的key  请替换为自己的 783da68c7ea7e10fcd259db651cc550b
      * 13dbd95e28f9db3d84286971ca8c9e4f

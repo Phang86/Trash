@@ -40,7 +40,7 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
     private int time = 5;
     private CardView cv;
     private TextView tv;
-    private String IMG_URL = "https://bing.biturl.top/?resolution=1366&format=image&index=0&mkt=zh-CN";
+    private String IMG_URL = "http://power-api.cretinzp.com:8000/girls/422/pusxk0lsmfzq8uor.jpg";
 //    private String IMG_URL;
     private final String TAG = "WelcomeActivity";
 //    private List<WallPaperResponse.ResBean.VerticalBean> list;
