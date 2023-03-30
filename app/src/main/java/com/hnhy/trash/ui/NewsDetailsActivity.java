@@ -23,6 +23,11 @@ public class NewsDetailsActivity extends BaseActivity {
         back(toolbar, false);
         //设置状态栏
 //        setStatubar(this, R.color.white, true);
+        if (!hasNetwork()) {
+            showMsg("请联网使用");
+            return;
+        }
+
         //加载WebView
         loadWebView();
     }

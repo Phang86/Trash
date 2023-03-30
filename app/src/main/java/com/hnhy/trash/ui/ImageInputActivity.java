@@ -32,6 +32,7 @@ import com.hnhy.trash.model.TrashResponse;
 import com.hnhy.trash.utils.Base64Util;
 import com.hnhy.trash.utils.Constant;
 import com.hnhy.trash.utils.FileUtil;
+import com.hnhy.trash.utils.HistoryHelper;
 import com.hnhy.trash.utils.SPUtils;
 import com.llw.mvplibrary.mvp.MvpActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -66,6 +67,8 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
     private RecyclerView rvRecognitionResult,rvClassificationResult;
     private RxPermissions rxPermissions;
     private NestedScrollView nestedScrollView;
+    private String word;//输入的物品
+
 
     private File outputImage;
 
@@ -119,6 +122,10 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
 
     @Override
     public void onClick(View v) {
+        if (!hasNetwork()) {
+            showMsg("请联网使用");
+            return;
+        }
         switch (v.getId()) {
             case R.id.btn_web_picture://网络图片
                 etImageUrl.setVisibility(View.VISIBLE);
@@ -362,8 +369,9 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
         //添加列表Item点击
         adapter.setOnItemChildClickListener((adapter1, view, position) -> {
             showLoadingDialog();
+            word = result.get(position).getKeyword();
             //垃圾分类
-            mPresenter.searchGoods(result.get(position).getKeyword());
+            mPresenter.searchGoods(word);
         });
         rvRecognitionResult.setLayoutManager(new LinearLayoutManager(this));
         rvRecognitionResult.setAdapter(adapter);
@@ -400,6 +408,8 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
             if (result != null && result.size() > 0) {
                 //显示分类结果
                 showClassificationResult(result);
+                //保存到历史记录里
+                HistoryHelper.saveHistory(response.getResult().getList(), word);
             } else {
                 showMsg("触及到了知识盲区");
             }

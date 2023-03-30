@@ -10,6 +10,8 @@ import com.iflytek.cloud.SpeechUtility;
 import com.llw.mvplibrary.BaseApplication;
 import com.llw.mvplibrary.network.NetworkApi;
 
+import org.litepal.LitePal;
+
 import java.util.Locale;
 
 import io.reactivex.functions.Consumer;
@@ -26,6 +28,9 @@ public class TrashApplication extends BaseApplication {
         NetworkApi.init(new NetworkRequiredInfo(this));
         //初始化讯飞语音
         SpeechUtility.createUtility(this, SpeechConstant.APPID + Constant.XF_APPID);
+
+        //数据库初始化
+        LitePal.initialize(this);
 
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override

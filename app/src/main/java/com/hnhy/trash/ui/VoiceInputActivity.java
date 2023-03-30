@@ -18,6 +18,7 @@ import com.hnhy.trash.adapter.SearchGoodsAdapter;
 import com.hnhy.trash.contract.TextContract;
 import com.hnhy.trash.model.TrashResponse;
 import com.hnhy.trash.utils.Constant;
+import com.hnhy.trash.utils.HistoryHelper;
 import com.hnhy.trash.utils.SpeechUtil;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.mvp.MvpActivity;
@@ -35,6 +36,7 @@ public class VoiceInputActivity extends MvpActivity<TextContract.TextPresenter> 
     private SearchGoodsAdapter searchGoodsAdapter;//结果列表适配器
     private RecyclerView rvResult;//结果列表
     private RelativeLayout relativeLayout;
+    private String word;
 
     @Override
     public int getLayoutId() {
@@ -102,6 +104,8 @@ public class VoiceInputActivity extends MvpActivity<TextContract.TextPresenter> 
             }
             //请求接口搜索物品的垃圾分类
             showMsg("正在搜索物品：" + goodsName);
+            //语音识别结果赋值
+            word = goodsName;
             mPresenter.searchGoods(goodsName);
         });
     }
@@ -129,6 +133,8 @@ public class VoiceInputActivity extends MvpActivity<TextContract.TextPresenter> 
                 newslistBeanList.addAll(response.getResult().getList());
                 //刷新适配器
                 searchGoodsAdapter.notifyDataSetChanged();
+                //保存到历史记录里面
+                HistoryHelper.saveHistory(response.getResult().getList(), word);
             } else {
                 relativeLayout.setVisibility(View.VISIBLE);
                 showMsg(getString(R.string.knowledge_blind_spot));

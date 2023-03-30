@@ -26,6 +26,8 @@
     <string name="not_camera">The camera permission is not obtained. Procedure</string>
     <string name="token_isEmpty">token null</string>
     <string name="news_info">News details</string>
+    <string name="history">Historical record</string>
+    <string name="delAll">delete all</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

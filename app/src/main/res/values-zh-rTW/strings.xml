@@ -26,4 +26,6 @@
     <string name="not_camera">未獲取到相機權限</string>
     <string name="token_isEmpty">token爲空</string>
     <string name="news_info">新聞詳情</string>
+    <string name="history">歷史記錄</string>
+    <string name="delAll">全刪</string>
 </resources>

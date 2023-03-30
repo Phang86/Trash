@@ -21,12 +21,16 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.gson.Gson;
 import com.hnhy.trash.R;
 import com.hnhy.trash.adapter.TrashNewsAdapter;
 import com.hnhy.trash.contract.MainContract;
 import com.hnhy.trash.model.TrashNewsResponse;
+import com.hnhy.trash.model.TrashResponse;
+import com.hnhy.trash.utils.AppStartUpUtils;
 import com.hnhy.trash.utils.Constant;
 import com.hnhy.trash.utils.LanguageUtil;
+import com.hnhy.trash.utils.NewsHelper;
 import com.hnhy.trash.utils.SpUserUtils;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.mvp.MvpActivity;
@@ -104,8 +108,34 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
         });
         rvNews.setLayoutManager(new LinearLayoutManager(context));
         rvNews.setAdapter(mAdapter);
-        //请求垃圾分类新闻数据
-        mPresenter.getTrashNews(10);
+
+        if (hasNetwork()) {//有网络
+            if (AppStartUpUtils.isTodayFirstStartApp(context)) {
+                //今天首次启动app
+                showLoadingDialog();
+                //请求垃圾分类新闻数据
+                mPresenter.getTrashNews(10);
+            }else{
+                //今天后续启动
+                //读取本地数据库信息
+                List<TrashNewsResponse.ResultBean.NewslistBean> list = NewsHelper.queryAllNews();
+                if (list.size() <= 0){
+                    mPresenter.getTrashNews(10);
+                }else{
+                    //显示轮播图
+                    showBanner(list);
+                    //显示新闻列表
+                    showList(list);
+                }
+            }
+        } else {//无网络
+            //加载默认数据
+            TrashNewsResponse.ResultBean response = new Gson().fromJson(Constant.LOCAL_NEWS_DATA, TrashNewsResponse.ResultBean.class);
+            //Log.e(TAG, "initView: "+Constant.LOCAL_NEWS_DATA);
+            mList.clear();
+            mList.addAll(response.getNewslist());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     /**
@@ -374,6 +404,8 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
                 //数据显示
                 showBanner(list); //轮播显示
                 showList(list); //显示新闻数据
+                //保存新闻数据
+                NewsHelper.saveNews(list);
             } else {
                 showMsg("垃圾分类新闻为空");
             }
@@ -395,5 +427,9 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
     @Override
     protected MainContract.MainPresenter createPresenter() {
         return new MainContract.MainPresenter();
+    }
+
+    public void jumpHistory(View view) {
+        gotoActivity(HistoryActivity.class);
     }
 }

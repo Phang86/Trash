@@ -19,6 +19,7 @@ import com.hnhy.trash.adapter.SearchGoodsAdapter;
 import com.hnhy.trash.contract.TextContract;
 import com.hnhy.trash.model.TrashResponse;
 import com.hnhy.trash.utils.Constant;
+import com.hnhy.trash.utils.HistoryHelper;
 import com.hnhy.trash.view.PhEditText;
 import com.llw.mvplibrary.mvp.MvpActivity;
 
@@ -36,6 +37,7 @@ public class TextInputActivity extends MvpActivity<TextContract.TextPresenter> i
     private List<TrashResponse.ResultBean.ListBean> newslistBeanList = new ArrayList<>();//数据列表
     private SearchGoodsAdapter searchGoodsAdapter;//结果列表适配器
     private RelativeLayout nodatalayout;
+    private String word;
 
     @Override
     public void initData(Bundle savedInstanceState) {
@@ -67,10 +69,14 @@ public class TextInputActivity extends MvpActivity<TextContract.TextPresenter> i
         //设置动作监听
         etGoods.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String word = etGoods.getText().toString().trim();
+                word = etGoods.getText().toString().trim();
                 if (word.isEmpty()) {
                     showMsg(getString(R.string.enter_item_name));
                 } else {
+                    if (!hasNetwork()) {
+                        showMsg("请联网使用");
+                        return false;
+                    }
                     //显示加载弹窗
                     showLoadingDialog();
                     //控制输入法
@@ -122,6 +128,8 @@ public class TextInputActivity extends MvpActivity<TextContract.TextPresenter> i
                 newslistBeanList.addAll(response.getResult().getList());
                 //刷新适配器
                 searchGoodsAdapter.notifyDataSetChanged();
+                //保存到数据库
+                HistoryHelper.saveHistory(response.getResult().getList(),word);
             } else {
                 newslistBeanList.clear();
                 searchGoodsAdapter.notifyDataSetChanged();

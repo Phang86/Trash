@@ -26,8 +26,8 @@
     <string name="not_camera">未获取到相机权限</string>
     <string name="token_isEmpty">token为空</string>
     <string name="news_info">新闻详情</string>
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
+    <string name="history">历史记录</string>
+    <string name="delAll">全删</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
