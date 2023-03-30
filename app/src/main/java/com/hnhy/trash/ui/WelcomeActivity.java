@@ -26,6 +26,7 @@ import com.hnhy.trash.utils.LanguageUtil;
 import com.hnhy.trash.utils.SpUserUtils;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.mvp.MvpActivity;
+import com.llw.mvplibrary.network.NetworkUtils;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
     private String IMG_URL = "https://bing.biturl.top/?resolution=1366&format=image&index=0&mkt=zh-CN";
 //    private String IMG_URL;
     private final String TAG = "WelcomeActivity";
-    private List<WallPaperResponse.ResBean.VerticalBean> list;
+//    private List<WallPaperResponse.ResBean.VerticalBean> list;
     //    private final String IMG_URL = "https://api.dujin.org/bing/1080.php";
 
     @Override
@@ -56,17 +57,18 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
         cv = findViewById(R.id.cardview);
         checkLanguage();
         Log.e(TAG, "initView: "+IMG_URL);
-
         handler.postDelayed(runnable, 1000);
     }
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        if (!hasNetwork()){
+            showMsg(getString(R.string.open_network));
+        }
         //获取壁纸
         mPresenter.getWallPaper();
         StatusBarUtil.transparencyBar(this);
         initView();
-
     }
 
     //检查语言
