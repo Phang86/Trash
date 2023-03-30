@@ -74,7 +74,7 @@ public class TextInputActivity extends MvpActivity<TextContract.TextPresenter> i
                     showMsg(getString(R.string.enter_item_name));
                 } else {
                     if (!hasNetwork()) {
-                        showMsg("请联网使用");
+                        showMsg(getString(R.string.open_network));
                         return false;
                     }
                     //显示加载弹窗

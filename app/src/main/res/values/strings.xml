@@ -28,7 +28,11 @@
     <string name="news_info">新闻详情</string>
     <string name="history">历史记录</string>
     <string name="delAll">全删</string>
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
-    <!--    <string name=""></string>-->
+    <string name="open_network">请联网使用</string>
+    <string name="nothing">什么都没有</string>
+    <string name="not_result">未获得相应的识别结果</string>
+    <string name="news_isEmpty">垃圾分类新闻为空</string>
+    <string name="no_news_info">无法显示新闻详情</string>
+    <string name="permission_no_pass">权限未通过，你不能使用该功能</string>
+    <string name="item_being_searched">正在搜索物品：</string>
 </resources>

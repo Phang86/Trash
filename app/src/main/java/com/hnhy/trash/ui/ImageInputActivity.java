@@ -123,7 +123,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
     @Override
     public void onClick(View v) {
         if (!hasNetwork()) {
-            showMsg("请联网使用");
+            showMsg(getString(R.string.open_network));
             return;
         }
         switch (v.getId()) {
@@ -142,7 +142,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
                         Glide.with(context).load(imageUrl).into(ivPicture);
                         mPresenter.getDiscernResult(accessToken,null,imageUrl);
                         etImageUrl.setVisibility(View.GONE);
-                        Log.e(TAG, "搜索地址為: "+imageUrl);
+//                        Log.e(TAG, "搜索地址為: "+imageUrl);
                     }
                     return false;
                 });
@@ -173,7 +173,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
                                     //获得权限
                                     turnOnCamera();
                                 } else {
-                                    showMsg("未获取到权限");
+                                    showMsg(getString(R.string.not_camera));
                                 }
                             });
                 } else {
@@ -233,7 +233,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
                 int columnIndex = cursor.getColumnIndex(filePathColumns[0]);
                 //获取图片路径
                 String imagePath = cursor.getString(columnIndex);
-                Log.e(TAG, " 圖片路徑："+imagePath);
+//                Log.e(TAG, " 圖片路徑："+imagePath);
                 cursor.close();
                 //识别
                 localImageDiscern(imagePath);
@@ -245,7 +245,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
             }
 
         } else {
-            showMsg("什么都没有");
+            showMsg(getString(R.string.nothing));
         }
     }
 
@@ -345,7 +345,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
     public void getDiscernResultResponse(GetDiscernResultResponse response) {
         if(response == null){
             hideLoadingDialog();
-            showMsg("未获得相应的识别结果");
+            showMsg(getString(R.string.not_result));
             return;
         }
         ivPicture.setVisibility(View.VISIBLE);
@@ -355,7 +355,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
             showDiscernResult(result);
         } else {
             hideLoadingDialog();
-            showMsg("未获得相应的识别结果");
+            showMsg(getString(R.string.not_result));
         }
     }
 
@@ -411,7 +411,7 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
                 //保存到历史记录里
                 HistoryHelper.saveHistory(response.getResult().getList(), word);
             } else {
-                showMsg("触及到了知识盲区");
+                showMsg(getString(R.string.knowledge_blind_spot));
             }
         } else {
             hideLoadingDialog();

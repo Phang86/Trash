@@ -407,7 +407,7 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
                 //保存新闻数据
                 NewsHelper.saveNews(list);
             } else {
-                showMsg("垃圾分类新闻为空");
+                showMsg(getString(R.string.news_isEmpty));
             }
         } else {
             showMsg(response.getMsg());

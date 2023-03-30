@@ -80,7 +80,7 @@ public class VoiceInputActivity extends MvpActivity<TextContract.TextPresenter> 
                     //开始语音监听
                     startVoiceListener();
                 } else {//权限未通过
-                    showMsg("权限未通过，你不能使用该功能");
+                    showMsg(getString(R.string.permission_no_pass));
                 }
             });
             return;
@@ -103,7 +103,7 @@ public class VoiceInputActivity extends MvpActivity<TextContract.TextPresenter> 
                 return;
             }
             //请求接口搜索物品的垃圾分类
-            showMsg("正在搜索物品：" + goodsName);
+            showMsg(getString(R.string.item_being_searched) + goodsName);
             //语音识别结果赋值
             word = goodsName;
             mPresenter.searchGoods(goodsName);
