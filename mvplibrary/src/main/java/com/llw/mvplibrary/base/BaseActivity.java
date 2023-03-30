@@ -76,7 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IUiCallb
         });
     }
 
-
     /**
      * 设置页面状态栏
      *
@@ -173,7 +172,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IUiCallb
             flag = false;
         }
         lastClickTime = currentClickTime;
-
         return flag;
     }
 

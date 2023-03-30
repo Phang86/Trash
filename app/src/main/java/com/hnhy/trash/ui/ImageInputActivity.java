@@ -135,7 +135,8 @@ public class ImageInputActivity extends MvpActivity<ImageContract.ImagePresenter
                         //http://imgsrc.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg
                         //https://api.dujin.org/bing/1920.php
                         //https://api.dujin.org/bing/m.php
-                        String defaultWebImageUrl = "http://imgsrc.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg";
+                        //https://api.isoyu.com/mm_images.php
+                        String defaultWebImageUrl = "https://api.dujin.org/bing/1920.php";
                         String imageUrl = "".equals(webImageUrl) ? defaultWebImageUrl : webImageUrl;
                         //识别网络图片Url
                         showLoadingDialog();

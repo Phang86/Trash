@@ -35,6 +35,14 @@
     <string name="no_news_info">Unable to display news details</string>
     <string name="permission_no_pass">Permission not granted, you can not use this feature</string>
     <string name="item_being_searched">Item being searched:</string>
+    <string name="network_image_url">Web image Url</string>
+
+    <string name="network_image">Network picture</string>
+    <string name="photo_album">Photo album</string>
+    <string name="take_pictures">Take pictures</string>
+
+    <string name="recognition_result">Recognition result</string>
+    <string name="classification_result">Classification result</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

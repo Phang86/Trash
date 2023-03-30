@@ -35,4 +35,12 @@
     <string name="no_news_info">無法顯示新聞詳情</string>
     <string name="permission_no_pass">權限未通過，你不能使用該功能</string>
     <string name="item_being_searched">正在搜索物品：</string>
+    <string name="network_image_url">網絡圖片Url</string>
+
+    <string name="network_image">網絡圖片</string>
+    <string name="photo_album">相冊圖片</string>
+    <string name="take_pictures">拍照圖片</string>
+
+    <string name="recognition_result">識別結果</string>
+    <string name="classification_result">分類結果</string>
 </resources>

@@ -79,6 +79,9 @@ public class NetworkApi {
             case 1://百度SDK地址
                 mBaseUrl = "https://aip.baidubce.com";
                 break;
+            case 2:
+                mBaseUrl = "http://service.picasso.adesk.com";
+                break;
             default:
                 break;
         }

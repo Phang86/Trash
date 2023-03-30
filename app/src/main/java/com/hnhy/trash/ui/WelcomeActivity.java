@@ -7,9 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,20 +19,31 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hnhy.trash.R;
+import com.hnhy.trash.contract.WallPaperContract;
+import com.hnhy.trash.model.WallPaperResponse;
 import com.hnhy.trash.utils.Constant;
 import com.hnhy.trash.utils.LanguageUtil;
 import com.hnhy.trash.utils.SpUserUtils;
 import com.llw.mvplibrary.base.BaseActivity;
+import com.llw.mvplibrary.mvp.MvpActivity;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
 
-public class WelcomeActivity extends BaseActivity {
+import java.util.List;
+import java.util.Random;
 
-    private RelativeLayout relativeLayout;
+import javax.security.auth.login.LoginException;
+
+public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPresenter> implements WallPaperContract.WallPaperView {
+
+    private RelativeLayout img;
     private int time = 5;
     private CardView cv;
     private TextView tv;
-//    private final String IMG_URL = "http://imgsrc.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg";
-    private final String IMG_URL = "https://api.dujin.org/bing/m.php";
+    private String IMG_URL = "https://bing.biturl.top/?resolution=1366&format=image&index=0&mkt=zh-CN";
+//    private String IMG_URL;
+    private final String TAG = "WelcomeActivity";
+    private List<WallPaperResponse.ResBean.VerticalBean> list;
+    //    private final String IMG_URL = "https://api.dujin.org/bing/1080.php";
 
     @Override
     public int getLayoutId() {
@@ -38,32 +51,22 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void initView() {
-        relativeLayout = findViewById(R.id.welcome_bg);
+        img = findViewById(R.id.welcome_bg);
         tv = findViewById(R.id.tv);
         cv = findViewById(R.id.cardview);
         checkLanguage();
-        try {
-            Glide.with(this).load(IMG_URL).into(new SimpleTarget<Drawable>() {
-                @Override
-                public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        relativeLayout.setBackground(resource);
-                    }else{
-                        //g.e("TAG", "onResourceReady: "+);
-                        relativeLayout.setBackground(resource);
-                    }
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Log.e(TAG, "initView: "+IMG_URL);
+
         handler.postDelayed(runnable, 1000);
     }
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        //获取壁纸
+        mPresenter.getWallPaper();
         StatusBarUtil.transparencyBar(this);
         initView();
+
     }
 
     //检查语言
@@ -94,6 +97,11 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @Override
+    protected WallPaperContract.WallPaperPresenter createPresenter() {
+        return new WallPaperContract.WallPaperPresenter();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
@@ -109,5 +117,41 @@ public class WelcomeActivity extends BaseActivity {
             handler.removeCallbacksAndMessages(null);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void getWallPaperResult(WallPaperResponse response) {
+        if (response.getCode() == 0) {
+            if (response.getRes().getVertical() != null){
+                IMG_URL = response.getRes().getVertical().get((int) (Math.random() * response.getRes().getVertical().size())).getWp();
+                loadingBg();
+            }
+        }else{
+            loadingBg();
+            Log.e(TAG, "getWallPaperResult: "+response.getMsg());
+        }
+    }
+
+    private void loadingBg() {
+        try {
+            Glide.with(this).load(IMG_URL).into(new SimpleTarget<Drawable>() {
+                @Override
+                public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        img.setBackground(resource);
+                    }else{
+                        //g.e("TAG", "onResourceReady: "+);
+                        img.setBackground(resource);
+                    }
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void getDataFailed(String e) {
+        loadingBg();
     }
 }

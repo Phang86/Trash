@@ -4,6 +4,7 @@ import com.hnhy.trash.model.GetDiscernResultResponse;
 import com.hnhy.trash.model.GetTokenResponse;
 import com.hnhy.trash.model.TrashNewsResponse;
 import com.hnhy.trash.model.TrashResponse;
+import com.hnhy.trash.model.WallPaperResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -67,5 +68,12 @@ public interface ApiService {
     @GET("/lajifenleinews/index?key=" + KEY)
     Observable<TrashNewsResponse> getTrashNews(@Query("num") Integer num);
 
+    /**
+     * 手机壁纸API
+     *
+     * @return WallPaperResponse 网络壁纸数据返回
+     */
+    @GET("/v1/vertical/vertical?limit=30&skip=180&adult=false&first=0&order=hot")
+    Observable<WallPaperResponse> getWallPaper();
 
 }
