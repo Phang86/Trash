@@ -121,6 +121,7 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
         return super.onKeyDown(keyCode, event);
     }
 
+    //壁纸获取成功
     @Override
     public void getWallPaperResult(WallPaperResponse response) {
         if (response.getCode() == 0) {
@@ -134,6 +135,7 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
         }
     }
 
+    //加载背景
     private void loadingBg() {
         try {
             Glide.with(this).load(IMG_URL).into(new SimpleTarget<Drawable>() {
@@ -152,6 +154,7 @@ public class WelcomeActivity extends MvpActivity<WallPaperContract.WallPaperPres
         }
     }
 
+    //壁纸获取失败
     @Override
     public void getDataFailed(String e) {
         loadingBg();
