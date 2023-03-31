@@ -54,4 +54,7 @@
 
     <string name="save_wallpaper">圖片保存在%s文件夾下</string>
     <string name="save_wallpaper_failure">圖片保存失敗，請稍後重試</string>
+
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_finish">刷新完成</string>
 </resources>

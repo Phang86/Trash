@@ -1,5 +1,6 @@
 package com.hnhy.trash.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,9 @@ import com.hnhy.trash.model.WallPaperResponse;
 import com.hnhy.trash.utils.Constant;
 import com.llw.mvplibrary.mvp.MvpActivity;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.litepal.LitePal;
 
@@ -64,6 +68,8 @@ public class WallPaperActivity extends MvpActivity<WallPaperContract.WallPaperPr
      */
     private WallPaperResponse.ResBean.VerticalBean topBean, bottomBean;
 
+    private SmartRefreshLayout smartRefreshLayout;
+
 
 
     @Override
@@ -79,6 +85,7 @@ public class WallPaperActivity extends MvpActivity<WallPaperContract.WallPaperPr
         toolbar = findViewById(R.id.toolbar);
         rv = findViewById(R.id.rv);
         appbar = findViewById(R.id.appbar);
+        smartRefreshLayout = findViewById(R.id.smr_refreshLayout);
 
         heightList.add(100);
         for (int i = 0; i < WALLPAPER_NUM; i++) {
@@ -112,6 +119,19 @@ public class WallPaperActivity extends MvpActivity<WallPaperContract.WallPaperPr
         });
 
 
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                showLoadingDialog();
+                mList.clear();
+                mAdapter.notifyDataSetChanged();
+                mPresenter.getWallPaper();
+                if (mList != null){
+                    refreshLayout.finishRefresh();
+                    hideLoadingDialog();
+                }
+            }
+        });
     }
 
 
@@ -131,6 +151,9 @@ public class WallPaperActivity extends MvpActivity<WallPaperContract.WallPaperPr
     @Override
     public void getWallPaperResult(WallPaperResponse response) {
         if (response.getRes() != null) {
+            Log.e("TAG", "getWallPaperResult: "+response.toString());
+
+
             List<WallPaperResponse.ResBean.VerticalBean> data = response.getRes().getVertical();
             //创建头部和底部的两个广告item的假数据
             topBean = new WallPaperResponse.ResBean.VerticalBean();

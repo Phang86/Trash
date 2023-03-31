@@ -53,8 +53,6 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
 
     private ViewPager2 vp;
 
-    private static File filePath;
-
     private RxPermissions rxPermissions;
 
     List<WallPaper> mList = new ArrayList<>();
@@ -135,13 +133,13 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
                             .subscribe(grant -> {
                                 if (grant) {
                                     //获得权限
-                                    saveImage(this,bitmap);
+                                    saveImageToGallery(this,bitmap);
                                 } else {
                                     showMsg("请前往设置打开存储权限");
                                 }
                             });
                 }else{
-                    saveImage(this,bitmap);
+                    saveImageToGallery(this,bitmap);
                 }
 
                 break;
@@ -176,49 +174,57 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
      * @param bitmap  bitmap
      * @return
      */
-    public void saveImage(Context context, Bitmap bitmap) {
-        boolean isSaveSuccess = saveImageToGallery(context,bitmap);
-        if (isSaveSuccess) {
-            String str = getString(R.string.save_wallpaper);
-            String content = String.format(str, filePath);
-            showMsg(content);
-        } else {
-            showMsg(getString(R.string.save_wallpaper_failure));
-        }
-    }
+//    public void saveImage(Context context, Bitmap bitmap) {
+//        boolean isSaveSuccess = saveImageToGallery(context,bitmap);
+//        if (isSaveSuccess) {
+//            String str = getString(R.string.save_wallpaper);
+//            String content = String.format(str, filePath);
+//            showMsg(content);
+//        } else {
+//            showMsg(getString(R.string.save_wallpaper_failure));
+//        }
+//    }
 
-    //保存文件到指定路径
-    public static boolean saveImageToGallery(Context context, Bitmap bmp) {
+    /**
+     * 保存图片到本地相册
+     *
+     * @param context 上下文
+     * @param bitmap  bitmap
+     * @return
+     */
+    public boolean saveImageToGallery(Context context, Bitmap bitmap) {
         // 首先保存图片
-        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "wallpaper";
-        File appDir = new File(storePath);
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "trash_wallpaper";
+        File appDir = new File(filePath);
         if (!appDir.exists()) {
             appDir.mkdir();
         }
-        String fileName = System.currentTimeMillis() + ".jpg";
+        String fileName = "wallpaper" + 1024 + ".jpg";
         File file = new File(appDir, fileName);
         try {
             FileOutputStream fos = new FileOutputStream(file);
             //通过io流的方式来压缩保存图片
-            boolean isSuccess = bmp.compress(Bitmap.CompressFormat.JPEG, 60, fos);
+            boolean isSuccess = bitmap.compress(Bitmap.CompressFormat.JPEG, 60, fos);
             fos.flush();
             fos.close();
             //把文件插入到系统图库
-            //MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), fileName, null);
-
+            MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), fileName, null);
             //保存图片后发送广播通知更新数据库
             Uri uri = Uri.fromFile(file);
-            filePath = file;
-            Log.e("TAG", "saveImageToGallery: "+filePath);
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
             if (isSuccess) {
+                String str = getString(R.string.save_wallpaper);
+                String content = String.format(str, file);
+                showMsg(content);
                 return true;
             } else {
+                showMsg("图片保存失败");
                 return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        showMsg("图片保存失败");
         return false;
     }
 

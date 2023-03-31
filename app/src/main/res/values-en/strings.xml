@@ -54,6 +54,9 @@
 
     <string name="save_wallpaper">The images are saved in the %s folder</string>
     <string name="save_wallpaper_failure">Failed to save the picture, please try again later</string>
+
+    <string name="refreshing">refresh...</string>
+    <string name="refresh_finish">Refresh complete</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>
