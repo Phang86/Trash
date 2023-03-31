@@ -46,9 +46,11 @@ public class WallPaperAdapter extends BaseQuickAdapter<WallPaperResponse.ResBean
         //重新设置imageView的高度
         imageView.setLayoutParams(layoutParams);
 
-        if (Top.equals(item.getDesc()) || Bottom.equals(item.getDesc())) {
-            imageView.setImageResource(R.mipmap.icon_logo);
-        } else {
+        if (Top.equals(item.getDesc()) ) {
+            imageView.setImageResource(R.mipmap.five);
+        }else if (Bottom.equals(item.getDesc())){
+            imageView.setImageResource(R.mipmap.four);
+        }else {
             Glide.with(mContext).load(item.getImg()).into(imageView);
         }
 

@@ -398,6 +398,7 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
      */
     @Override
     public void getTrashNewsResponse(TrashNewsResponse response) {
+        hideLoadingDialog();
         if (response.getCode() == Constant.SUCCESS_CODE) {
             List<TrashNewsResponse.ResultBean.NewslistBean> list = response.getResult().getNewslist();
             if (list.size() > 0) {
@@ -421,6 +422,7 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
      */
     @Override
     public void getTrashNewsFailed(Throwable throwable) {
+        hideLoadingDialog();
         Log.d(TAG, "获取垃圾分类新闻失败：" + throwable.toString());
     }
 
