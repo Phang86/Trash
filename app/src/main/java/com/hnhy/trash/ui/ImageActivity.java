@@ -28,6 +28,7 @@ import com.hnhy.trash.R;
 import com.hnhy.trash.adapter.WallPaperAdapter;
 import com.hnhy.trash.model.WallPaper;
 import com.llw.mvplibrary.base.BaseActivity;
+import com.llw.mvplibrary.network.utils.DateUtil;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -79,6 +80,7 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
         btnDownload.setOnClickListener(this);
         btnSettingWallpaper.setOnClickListener(this);
         rxPermissions = new RxPermissions(this);
+
     }
 
     @Override
@@ -199,7 +201,8 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
         if (!appDir.exists()) {
             appDir.mkdir();
         }
-        String fileName = "wallpaper" + 1024 + ".jpg";
+        String nowTime = DateUtil.getDateTime();
+        String fileName = "wallpaper_" +nowTime+"_"+ 1024 + ".jpg";
         File file = new File(appDir, fileName);
         try {
             FileOutputStream fos = new FileOutputStream(file);
