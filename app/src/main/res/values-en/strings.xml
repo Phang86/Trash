@@ -43,6 +43,10 @@
 
     <string name="recognition_result">Recognition result</string>
     <string name="classification_result">Classification result</string>
+
+    <string name="confirm_delete_all">Are you sure you want to delete all records?</string>
+    <string name="confirm">determine</string>
+    <string name="cancel">cancel</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

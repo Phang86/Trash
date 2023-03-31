@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -100,7 +102,26 @@ public class HistoryActivity extends BaseActivity {
 
     //全删按钮
     public void deleteAll(View view) {
-        HistoryHelper.deleteAllHistory();
-        showListData();
+        showDeleteAlertDialog();
+    }
+
+    public void showDeleteAlertDialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(getString(R.string.confirm_delete_all))
+                .setNegativeButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        HistoryHelper.deleteAllHistory();
+                        showListData();
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create().show();
     }
 }

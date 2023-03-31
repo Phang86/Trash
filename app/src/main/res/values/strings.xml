@@ -43,4 +43,8 @@
 
     <string name="recognition_result">识别结果</string>
     <string name="classification_result">分类结果</string>
+
+    <string name="confirm_delete_all">确定删除全部记录吗？</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
 </resources>
