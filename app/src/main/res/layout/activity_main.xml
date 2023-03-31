@@ -289,9 +289,6 @@
 
                     </androidx.cardview.widget.CardView>
 
-
-
-
                     <!--图像输入-->
 <!--                    <com.google.android.material.button.MaterialButton-->
 <!--                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"-->
@@ -464,6 +461,22 @@
         android:layout_margin="@dimen/dp_20"
         android:src="@mipmap/icon_history"
         android:onClick="jumpHistory"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="screen"
+        app:fabSize="mini"
+        app:hoveredFocusedTranslationZ="@dimen/dp_18"
+        app:pressedTranslationZ="@dimen/dp_18" />
+
+    <!--浮动按钮 历史记录-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_wallpaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@mipmap/icon_logo"
+        android:layout_marginBottom="@dimen/dp_80"
+        android:layout_marginRight="@dimen/dp_20"
+        android:onClick="jumpWallpaper"
         app:backgroundTint="@color/white"
         app:backgroundTintMode="screen"
         app:fabSize="mini"

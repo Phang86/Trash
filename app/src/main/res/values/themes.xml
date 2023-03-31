@@ -18,4 +18,11 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!-- 圆角图片 -->
+    <style name="roundedCornerStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_16</item>
+    </style>
+
+
 </resources>

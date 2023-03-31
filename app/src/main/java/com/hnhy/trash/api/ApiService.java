@@ -2,6 +2,7 @@ package com.hnhy.trash.api;
 
 import com.hnhy.trash.model.GetDiscernResultResponse;
 import com.hnhy.trash.model.GetTokenResponse;
+import com.hnhy.trash.model.PhotoResponse;
 import com.hnhy.trash.model.TrashNewsResponse;
 import com.hnhy.trash.model.TrashResponse;
 import com.hnhy.trash.model.WallPaperResponse;
@@ -76,4 +77,14 @@ public interface ApiService {
     @GET("/v1/vertical/vertical?limit=30&skip=180&adult=false&first=0&order=hot")
     Observable<WallPaperResponse> getWallPaper();
 
+
+    //https://www.mxnzp.com/api/image/girl/list/random?app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09
+
+    /**
+     * 手机壁纸API
+     *
+     * @return WallPaperResponse 网络壁纸数据返回
+     */
+    @GET("/api/image/girl/list/random?app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09")
+    Observable<PhotoResponse> getPhoto();
 }

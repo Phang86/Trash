@@ -47,6 +47,13 @@
     <string name="confirm_delete_all">Are you sure you want to delete all records?</string>
     <string name="confirm">determine</string>
     <string name="cancel">cancel</string>
+
+    <string name="load_wallpaper">Download wallpaper</string>
+    <string name="set_wallpaper">Set as wallpaper</string>
+    <string name="wallpaper_manage">Wallpaper management</string>
+
+    <string name="save_wallpaper">The images are saved in the %s folder</string>
+    <string name="save_wallpaper_failure">Failed to save the picture, please try again later</string>
     <!--    <string name=""></string>-->
     <!--    <string name=""></string>-->
 </resources>

@@ -47,4 +47,11 @@
     <string name="confirm_delete_all">确定删除全部记录吗？</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
+
+    <string name="load_wallpaper">下载壁纸</string>
+    <string name="set_wallpaper">设为壁纸</string>
+    <string name="wallpaper_manage">壁纸管理</string>
+
+    <string name="save_wallpaper">图片保存在%s文件夹下</string>
+    <string name="save_wallpaper_failure">保存图片失败，请稍后重试</string>
 </resources>

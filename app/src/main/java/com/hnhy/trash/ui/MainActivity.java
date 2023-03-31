@@ -432,4 +432,8 @@ public class MainActivity extends MvpActivity<MainContract.MainPresenter> implem
     public void jumpHistory(View view) {
         gotoActivity(HistoryActivity.class);
     }
+
+    public void jumpWallpaper(View view) {
+        gotoActivity(WallPaperActivity.class);
+    }
 }

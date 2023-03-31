@@ -3,7 +3,7 @@
     <!--数据库名称-->
     <dbname value="GoodTrash" />
     <!--数据库版本-->
-    <version value="2" />
+    <version value="3" />
 
     <!--映射模型-->
     <list>
@@ -11,5 +11,7 @@
         <mapping class="com.hnhy.trash.model.News" />
         <!--历史记录表-->
         <mapping class="com.hnhy.trash.model.History" />
+        <!--壁纸地址表-->
+        <mapping class="com.hnhy.trash.model.WallPaper" />
     </list>
 </litepal>

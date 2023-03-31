@@ -3,6 +3,7 @@ package com.hnhy.trash.contract;
 import android.annotation.SuppressLint;
 
 import com.hnhy.trash.api.ApiService;
+import com.hnhy.trash.model.PhotoResponse;
 import com.hnhy.trash.model.TrashResponse;
 import com.hnhy.trash.model.WallPaperResponse;
 import com.llw.mvplibrary.base.BasePresenter;
@@ -33,6 +34,26 @@ public class WallPaperContract {
                 }
             }));
         }
+
+        @SuppressLint("CheckResult")
+        public void getPhoto(){
+            ApiService service = NetworkApi.createService(ApiService.class, 3);
+            service.getPhoto().compose(NetworkApi.applySchedulers(new BaseObserver<PhotoResponse>() {
+                @Override
+                public void onSuccess(PhotoResponse photoResponse) {
+                    if (getView() != null){
+                        getView().getPhotoResult(photoResponse);
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable e) {
+                    if (getView() != null){
+                        getView().getPhotoFailed(e.getMessage());
+                    }
+                }
+            }));
+        }
     }
 
     public interface WallPaperView extends BaseView {
@@ -52,5 +73,16 @@ public class WallPaperContract {
          * 错误返回
          */
         void getDataFailed(String e);
+
+        /**
+         * 美女壁纸数据返回
+         * @param response PhotoResponse
+         */
+        void getPhotoResult(PhotoResponse response);
+
+        /**
+         * 错误返回
+         */
+        void getPhotoFailed(String e);
     }
 }

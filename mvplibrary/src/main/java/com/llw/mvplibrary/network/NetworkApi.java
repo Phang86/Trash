@@ -80,7 +80,12 @@ public class NetworkApi {
                 mBaseUrl = "https://aip.baidubce.com";
                 break;
             case 2:
+                //每日手机壁纸
                 mBaseUrl = "http://service.picasso.adesk.com";
+                break;
+            case 3:
+                //随机美女壁纸
+                mBaseUrl = "https://www.mxnzp.com";
                 break;
             default:
                 break;
