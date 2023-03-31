@@ -35,6 +35,7 @@
                 android:textSize="@dimen/sp_18" />
 
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <!--壁纸列表-->

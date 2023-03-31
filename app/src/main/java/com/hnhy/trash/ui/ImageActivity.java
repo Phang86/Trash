@@ -29,6 +29,7 @@ import com.hnhy.trash.adapter.WallPaperAdapter;
 import com.hnhy.trash.model.WallPaper;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.litepal.LitePal;
 
@@ -54,6 +55,8 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
 
     private static File filePath;
 
+    private RxPermissions rxPermissions;
+
     List<WallPaper> mList = new ArrayList<>();
     WallPaperAdapter mAdapter;
     String wallpaperUrl = null;
@@ -77,6 +80,7 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
         ivBack.setOnClickListener(this);
         btnDownload.setOnClickListener(this);
         btnSettingWallpaper.setOnClickListener(this);
+        rxPermissions = new RxPermissions(this);
     }
 
     @Override
@@ -125,21 +129,19 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.btn_download:
-                if (Build.VERSION.SDK_INT >= 23) {
-                    int REQUEST_CODE_CONTACT = 101;
-                    String[] permissions = {
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                    //验证是否许可权限
-                    for (String str : permissions) {
-                        if (context.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
-                            //申请权限
-                            context.requestPermissions(permissions, REQUEST_CODE_CONTACT);
-                            return;
-                        } else {
-                            //这里就是权限打开之后自己要操作的逻辑
-                            saveImage(this,bitmap);
-                        }
-                    }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    rxPermissions.request(
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            .subscribe(grant -> {
+                                if (grant) {
+                                    //获得权限
+                                    saveImage(this,bitmap);
+                                } else {
+                                    showMsg("请前往设置打开存储权限");
+                                }
+                            });
+                }else{
+                    saveImage(this,bitmap);
                 }
 
                 break;
