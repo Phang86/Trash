@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.hnhy.trash.R;
 import com.hnhy.trash.adapter.WallPaperAdapter;
 import com.hnhy.trash.model.WallPaper;
+import com.hnhy.trash.utils.Constants;
 import com.llw.mvplibrary.base.BaseActivity;
 import com.llw.mvplibrary.network.utils.DateUtil;
 import com.llw.mvplibrary.network.utils.StatusBarUtil;
@@ -195,8 +196,14 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
      * @return
      */
     public boolean saveImageToGallery(Context context, Bitmap bitmap) {
+        String filePath;
         // 首先保存图片
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "trash_wallpaper";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { //android 11
+            filePath = Constants.SDCardConstants.getDir(context);
+        }else {
+            filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "trash_wallpaper";
+        }
+//         Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "trash_wallpaper";
         File appDir = new File(filePath);
         if (!appDir.exists()) {
             appDir.mkdir();
@@ -221,13 +228,13 @@ public class ImageActivity extends BaseActivity implements View.OnClickListener 
                 showMsg(content);
                 return true;
             } else {
-                showMsg("图片保存失败");
+                showMsg("图片保存失败 2");
                 return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        showMsg("图片保存失败");
+        showMsg("图片保存失败 1");
         return false;
     }
 

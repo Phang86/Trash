@@ -95,6 +95,7 @@ public class NewsDetailsActivity extends BaseActivity {
         // 设置缓存模式,
         webSet.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
+        //https://www.baidu.com/
         webView.loadUrl(url);
         //一般情况下手机会使用默认浏览器打开网址，为了防止此操作，设置以下：
         //直接加载网址，省略默认浏览器.....
